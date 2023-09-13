@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#boardContainer{
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.boardCell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+} 
+#playersContainer {
+    display: flex;
+    justify-content: center;
+}
+.players {
+    
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}

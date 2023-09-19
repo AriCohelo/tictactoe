@@ -12,7 +12,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 }
-.boardCell {
+.cells {
 	width: 100px;
 	height: 100px;
 	border: 1px solid black;

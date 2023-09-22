@@ -72,20 +72,36 @@ const game = (() => {
 	let turn = 0;
 	let player1 = player('Player 1');
 	let player2 = player('Player 2');
-	let namePlayer = () => {
-		const player1Tag = document.querySelector('.player1Tag');
-		player1Tag.addEventListener('click', () => {
-			const person1 = prompt('What is your name?');
-			player1 = player(person1);
-			player1Tag.textContent = person1;
-		});
-		const player2Tag = document.querySelector('.player2Tag');
-		player2Tag.addEventListener('click', () => {
-			const person2 = prompt('What is your name?');
-			player2 = player(person2);
-			player2Tag.textContent = person2;
-		});
+	const player1Tag = document.querySelector('.player1Tag');
+	const player2Tag = document.querySelector('.player2Tag');
+	let namePlayer2 = (jugador, tag) => {
+		const person = prompt('What is your name?');
+		jugador.name = person;
+		tag.textContent = person;
 	};
+	player1Tag.addEventListener('click', () => namePlayer2(player1, player1Tag));
+	player2Tag.addEventListener('click', () => namePlayer2(player2, player2Tag));
+
+	// let namePlayer = () => {
+	// 	player1Tag.addEventListener('click', () => {
+	// 		const person = prompt('What is your name?');
+	// 		if (person === '') {
+	// 			player1Tag.textContent = 'Player 1';
+	// 		} else {
+	// 			player1 = player(person);
+	// 			player1Tag.textContent = person;
+	// 		}
+	// 	});
+	// 	player2Tag.addEventListener('click', () => {
+	// 		const person2 = prompt('What is your name?');
+	// 		if (person2 === '') {
+	// 			player2Tag.textContent = 'Player 2';
+	// 		} else {
+	// 			player2 = player(person2);
+	// 			player2Tag.textContent = person2;
+	// 		}
+	// 	});
+	// };
 	const gamePlay = (n) => {
 		if (turn == 0) {
 			gameboard.circle(n);
@@ -104,6 +120,7 @@ const game = (() => {
 			}
 			turn = 0;
 		}
+		game.turnGlow();
 	};
 	const tiedGame = () => {
 		const tieDialog = document.querySelector('.tieDialog');
@@ -126,14 +143,25 @@ const game = (() => {
 			gameboard.reset();
 			endDialog.close();
 			turn = 0;
+			game.turnGlow();
 		});
 	};
+	const turnGlow = () => {
+		if (turn === 0) {
+			player1Tag.style.border = '3px solid #6a89cc';
+			player2Tag.style.border = 'none';
+		} else {
+			player2Tag.style.border = '3px solid #6a89cc';
+			player1Tag.style.border = 'none';
+		}
+	};
 	return {
-		namePlayer,
+		namePlayer2,
 		gamePlay,
 		tiedGame,
 		gameEnd,
+		turnGlow,
 	};
 })();
-game.namePlayer();
+game.turnGlow();
 gameboard.boardCreator();

@@ -1,3 +1,4 @@
+//alt1
 const gameboard = (() => {
 	let boardStatus = ['', '', '', '', '', '', '', '', ''];
 	const boardCreator = () => {
@@ -83,24 +84,24 @@ const game = (() => {
 	player2Tag.addEventListener('click', () => namePlayer2(player2, player2Tag));
 
 	// let namePlayer = () => {
-	// 	player1Tag.addEventListener('click', () => {
-	// 		const person = prompt('What is your name?');
-	// 		if (person === '') {
-	// 			player1Tag.textContent = 'Player 1';
-	// 		} else {
-	// 			player1 = player(person);
-	// 			player1Tag.textContent = person;
-	// 		}
-	// 	});
-	// 	player2Tag.addEventListener('click', () => {
-	// 		const person2 = prompt('What is your name?');
-	// 		if (person2 === '') {
-	// 			player2Tag.textContent = 'Player 2';
-	// 		} else {
-	// 			player2 = player(person2);
-	// 			player2Tag.textContent = person2;
-	// 		}
-	// 	});
+	//  player1Tag.addEventListener('click', () => {
+	//      const person = prompt('What is your name?');
+	//      if (person === '') {
+	//          player1Tag.textContent = 'Player 1';
+	//      } else {
+	//          player1 = player(person);
+	//          player1Tag.textContent = person;
+	//      }
+	//  });
+	//  player2Tag.addEventListener('click', () => {
+	//      const person2 = prompt('What is your name?');
+	//      if (person2 === '') {
+	//          player2Tag.textContent = 'Player 2';
+	//      } else {
+	//          player2 = player(person2);
+	//          player2Tag.textContent = person2;
+	//      }
+	//  });
 	// };
 	const gamePlay = (n) => {
 		if (turn == 0) {

@@ -1,4 +1,4 @@
-//alt1
+//main
 const gameboard = (() => {
 	let boardStatus = ['', '', '', '', '', '', '', '', ''];
 	const boardCreator = () => {
@@ -77,32 +77,14 @@ const game = (() => {
 	const player2Tag = document.querySelector('.player2Tag');
 	let namePlayer2 = (jugador, tag) => {
 		const person = prompt('What is your name?');
-		jugador.name = person;
-		tag.textContent = person;
+		if (person != '') {
+			jugador.name = person;
+			tag.textContent = person;
+		} else null;
 	};
 	player1Tag.addEventListener('click', () => namePlayer2(player1, player1Tag));
 	player2Tag.addEventListener('click', () => namePlayer2(player2, player2Tag));
 
-	// let namePlayer = () => {
-	//  player1Tag.addEventListener('click', () => {
-	//      const person = prompt('What is your name?');
-	//      if (person === '') {
-	//          player1Tag.textContent = 'Player 1';
-	//      } else {
-	//          player1 = player(person);
-	//          player1Tag.textContent = person;
-	//      }
-	//  });
-	//  player2Tag.addEventListener('click', () => {
-	//      const person2 = prompt('What is your name?');
-	//      if (person2 === '') {
-	//          player2Tag.textContent = 'Player 2';
-	//      } else {
-	//          player2 = player(person2);
-	//          player2Tag.textContent = person2;
-	//      }
-	//  });
-	// };
 	const gamePlay = (n) => {
 		if (turn == 0) {
 			gameboard.circle(n);
@@ -128,31 +110,37 @@ const game = (() => {
 		const tie = document.querySelector('.tie');
 		const tieReset = document.querySelector('.tieReset');
 		tie.textContent = "It's a tie";
+		tieDialog.style.display = 'flex';
 		tieDialog.showModal();
 		tieReset.addEventListener('click', () => {
 			tieDialog.close();
 			gameboard.reset();
+			tieDialog.style.display = 'none';
+			turn = 0;
+			game.turnGlow();
 		});
 	};
 	const gameEnd = (player) => {
 		const endDialog = document.querySelector('.endDialog');
 		const resetBtn = document.querySelector('.resetBtn');
 		const winner = document.querySelector('.winner');
-		winner.textContent = `${player} Wins!`;
+		winner.innerHTML = `${player} <br> Wins!`;
+		endDialog.style.display = 'flex';
 		endDialog.showModal();
 		resetBtn.addEventListener('click', () => {
 			gameboard.reset();
 			endDialog.close();
+			endDialog.style.display = 'none';
 			turn = 0;
 			game.turnGlow();
 		});
 	};
 	const turnGlow = () => {
 		if (turn === 0) {
-			player1Tag.style.border = '3px solid #6a89cc';
+			player1Tag.style.border = '3px solid #eb2f06';
 			player2Tag.style.border = 'none';
 		} else {
-			player2Tag.style.border = '3px solid #6a89cc';
+			player2Tag.style.border = '3px solid #1e3799';
 			player1Tag.style.border = 'none';
 		}
 	};
